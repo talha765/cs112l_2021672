@@ -1,0 +1,286 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+struct book {
+    int id;
+    string bookname;
+    string author;
+    string isbn;
+    int price;
+    int pages;
+
+    void PrintAll() {
+        cout << "The details of the books are: " << endl;
+        cout << "ID: " << id << endl;
+        cout << "Bookname: " << bookname << endl;
+        cout << "Author: " << author << endl;
+        cout << "Price: " << price << endl;
+        cout << "Pages: " << pages << endl;
+    }
+};
+
+
+struct booklist {
+
+    book booklist[5];
+
+    void PrintAll() {
+        for (int i = 0; i < 5; i++) {
+
+            cout << "The details of the books are: " << endl;
+            cout << "ID: " << booklist[i].id << endl;
+            cout << "Bookname: " << booklist[i].bookname << endl;
+            cout << "Author: " << booklist[i].author << endl;
+            cout << "Price: " << booklist[i].price << endl;
+            cout << "Pages: " << booklist[i].pages << endl;
+        }
+    }
+
+    void AddBook() {
+        int loc;
+        int a, d, e;
+        string b, c;
+        cout << "Enter the location at which you want to add a new book: ";
+        cin >> loc;
+        cout << "Enter the ID of new book: ";
+        cin >> a;
+        cout << "Enter the bookname: ";
+        cin >> b;
+        cout << "Enter the author of book: ";
+        cin >> c;
+        cout << "Enter the price of new book: ";
+        cin >> d;
+        cout << "Enter the pages of new book: ";
+        cin >> e;
+
+
+        for (int i = 0; i < 5; i++) {
+            if (loc == i) {
+
+                booklist[i].id = a;
+                booklist[i].bookname = b;
+                booklist[i].author = c;
+                booklist[i].price = d;
+                booklist[i].pages = e;
+
+            }
+
+        }
+    }
+
+    void sortAscending() {
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (booklist[j].id > booklist[j + 1].id) {
+                    book temp;
+                    temp = booklist[j + 1];
+                    booklist[j + 1] = booklist[j];
+                    booklist[j] = temp;
+                }
+            }
+        }
+        cout << "The ascending order of IDs is: " << endl << endl;
+        PrintAll();
+    }
+    
+
+
+    void sortDescending() {
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (booklist[j].id < booklist[j + 1].id) {
+                    book temp;
+                    temp = booklist[j + 1];
+                    booklist[j + 1] = booklist[j];
+                    booklist[j] = temp;
+                }
+            }
+        }
+        cout << "The Descending order of IDs is: " << endl << endl;
+        PrintAll();
+    }
+    void deleteBook()
+    {
+        string n;
+        cout << "Enter the ISBN of the book you want to delete: " << endl;
+        cin >> n;
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (n == booklist[i].isbn)
+            {
+                booklist[i].id = 0;
+                booklist[i].bookname = "";
+                booklist[i].isbn = "";
+                booklist[i].price = 0;
+                booklist[i].pages = 0;
+            }
+        }
+    }
+
+};
+
+struct student {
+    int id;
+    string StdName;
+    int  RollNo;
+
+    void Print_All() {
+        cout << "The details of the student are: " << endl;
+        cout << "Student Name: " << StdName << endl;
+        cout << "Student ID: " << id << endl;
+        cout << "Roll No.: " << RollNo << endl;
+    }
+};
+
+
+struct StudentList {
+    student studentlist[5];
+
+    void printall() {
+        cout << "The lost of all students is: " << endl;
+        for (int i = 0; i < 5; i++) {
+            cout << "Student Name: " << studentlist[i].StdName << endl;
+            cout << "Student ID: " << studentlist[i].id << endl;
+            cout << "Roll No.: " << studentlist[i].RollNo << endl << endl;
+
+        }
+    }
+
+
+    void add_student() {
+        int l, id, roll;
+        string n;
+        cout << "Enter the location at which you want to add the new student: ";
+        cin >> l;
+        for (int i = 0; i < 5; i++) {
+            if (i == l) {
+                cin.ignore();
+                cout << "Enter student Name: ";
+                getline(cin,n);
+                cout << "Enter student ID: ";
+                cin >> id;
+                cout << "Enter Roll No.: ";
+                cin >> roll;
+                studentlist[i].StdName = n;
+                studentlist[i].id = id;
+                studentlist[i].RollNo = roll;
+            }
+        }
+
+
+    }
+
+
+    void delete_student()
+    {
+        int a;
+        cout << "Enter Student ID: ";
+        cin >> a;
+
+            if (studentlist[a].id == a)
+            {
+                studentlist[a].id = 0;
+                studentlist[a].StdName = " ";
+                studentlist[a].RollNo = 0;
+            }
+     }
+    
+};
+
+int main()
+{
+    cout << "Main Menu" << endl << endl << endl;
+    int c = 0;
+    StudentList sl;
+    booklist B;
+    book b;
+    student s;
+
+    while (c < 10)
+    {
+        cout << "Welcome! What will you like to do?" << endl << endl;
+        cout << "1. Add new student?" << endl;
+        cout << "2. Delete existing student?" << endl;
+        cout << "3. Show all students?" << endl;
+        cout << "4. Delete existing book?" << endl;
+        cout << "5. Add new book?" << endl;
+        cout << "6. Show a particular book?" << endl;
+        cout << "7. Show all books?" << endl;
+        cout << "8. Show books in ascending order?" << endl;
+        cout << "9. Show books in descending order?" << endl;
+        cout << "10. Exit" << endl << endl;
+
+        cout << "Enter your choice: ";
+        cin >> c;
+
+        if (c == 1)
+        {
+           sl.add_student();
+           system("pause");
+        }
+
+        else if (c == 2)
+        {
+            sl.delete_student();
+            system("pause");
+        }
+
+        else if (c == 3)
+        {
+            sl.printall();
+            system("pause");
+        }
+
+        else if (c == 4)
+        {
+            B.deleteBook();
+            system("pause");
+        }
+
+        else if (c == 5)
+        {
+            B.AddBook();
+            system("pause");
+        }
+
+        else if (c == 6)
+        {
+            //B.searchBook();
+            system("pause");
+        }
+
+        else if (c == 7)
+        {
+            B.PrintAll();
+            system("pause");
+        }
+
+        else if (c == 8)
+        {
+            B.sortAscending();
+            system("pause");
+        }
+
+        else if (c == 9)
+        {
+            B.sortDescending();
+            system("pause");
+        }
+
+        else if (c == 10)
+        {
+            cout << "Good bye!" << endl;
+        }
+
+        else
+            cout << "Invalid Input!!" << endl;
+        system("cls");
+        system("pause");
+    }
+}
+
