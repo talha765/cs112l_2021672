@@ -12,6 +12,10 @@ public:
 	void print(void);
 	void del(int num);
 	int test(void);
+
+`parity{
+delete set[];
+}
 };
 	
    
