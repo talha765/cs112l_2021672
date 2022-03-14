@@ -1,0 +1,114 @@
+#include <iostream>
+using namespace std;
+
+class parity {
+
+private:
+	int x = 0;
+	int* set;
+	int n = x;
+public:
+	void put(int num);
+	void print(void);
+	void del(int num);
+	int test(void);
+};
+	
+   
+   void parity::put(int num)
+	{
+		
+			x= x + 1;
+			int* temp = new int[x];
+			for (int i = 0; i < x - 1; i++) {
+				temp[i] = set[i];
+			}
+			delete[] set;
+			set = temp;
+			set[x - 1] = num;
+		
+	}
+   void parity::print()
+   {
+	   cout << "The set items are:";
+	   for (int i = 0; i < x; i++)
+	   {
+		   cout << " " << set[i];
+
+	   }
+	   
+   }
+	
+   void parity::del(int num)
+	{
+		
+			x = x - 1;
+			int* temp = new int[x];
+			int c = 0;
+			for (int i = 0; i < x + 1; i++) {
+				if (set[i] != num)
+				{
+					temp[c] = set[i];
+					c++;
+				}
+			}
+			delete[] set;
+			set = temp;
+		
+	}
+   int even, odd;
+   int parity::test() {
+	   if ((x % 2) == 0) {
+		   return even;
+	   }
+	   else {
+		   return odd;
+	   }
+   
+   }
+
+
+int main() {
+
+	int k, num;
+	parity f;
+	while (1)
+	{
+		cout << endl << "Please select an option\n";
+		cout << "1. Insert an item" << endl;
+		cout << "2. print an item" << endl;
+		cout << "3. delete an item" << endl;
+		cout << "4. check the items" << endl;
+		cout << "5. Quit" << endl;
+		cin >> k;
+		if (k == 1) {
+			cout << "Enter the number to insert" << endl;
+			cin >> num;
+			f.put(num);
+		}
+		else if (k == 2) {
+			
+			f.print();
+		}
+		else if (k == 3) {
+			cout << "Enter the number to delete" << endl;
+			cin >> num;
+			f.del(num);
+		}
+		else if (k == 4) {
+			f.test();
+		}
+		else if (k == 5) {
+			break;
+		}
+		else {
+			cout << "Wrong input, please select again" << endl;
+			cout << "1. Insert an item" << endl;
+			cout << "2. print the items" << endl;
+			cout << "3. delete an item" << endl;
+			cout << "4. check the items" << endl;
+			cout << "5. Quit" << endl;
+		}
+	}
+	return 0;
+}
