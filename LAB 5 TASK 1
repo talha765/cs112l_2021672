@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+class heater {
+	int temprature;
+    
+	public:
+		heater() {
+			temprature = 15;
+	     }
+		void warmer() {
+			temprature = temprature + 5;
+		}
+		void cooler() {
+			temprature = temprature - 5;
+		}
+		void print() {
+			cout << "The temprature is " << temprature;
+		}
+		~heater(){
+			temprature = 0;
+		}
+};
+
+int main() {
+	heater i;
+	int opt;
+	cout << "What operation do you want to perform?(enter the number)" << endl<<endl;
+	cout << "1.Add temprature" << endl << "2.Reduce temprature" << endl << "3.Display temprature";
+	cout << endl;
+	cin >> opt;
+
+	if (opt > 0 && opt < 4) {
+		
+		if (opt == 1) {
+			i.warmer();
+			i.print();
+		}
+
+		else if (opt == 2) {
+			i.cooler();
+			i.print();
+		}
+		else {
+			i.print();
+		}
+	 }
+	else {
+		cout << "Enter a valid option!";
+	}
+
+
+}
