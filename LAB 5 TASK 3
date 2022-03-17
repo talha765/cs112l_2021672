@@ -17,37 +17,43 @@ public:
         b = z;
 
     }
+    ~stringtype() {
+        cout << endl << "Program ended!";
+    }
+    //wont need any parameters and wont need endl
+    void copy(string source, string destination) {
+        destination = source;
+        cout << "The copied string is:" << destination;
+        return;
 
-
+    }
+    
     void setvalues(string str1, string str2) {
-        cin >> a;
-        cout << endl;
-        cin >> b;
-        cout << endl;
+        a = str1;
+        b = str2;
+
     }
     void printvalues() {
         cout << "String 1 is '" << a << "' ." << endl;
         cout << "String 2 is '" << b << "' ." << endl;
     }
+    
     int maxlength() {
+        int l1 = 0, l2 = 0;
 
-        int k;
-        for (int i = 0; a[i] != '/0'; i++) {
-            k++;
+        for (int i = 0; a[i] != '\0'; i++) {
+            l1++;
         }
-        int j;
-        for (int i = 0; b[i] != '/0'; i++) {
-            j++;
+        for (int i = 0; b[i] != '\0'; i++) {
+            l2++;
         }
-        if (k > j) {
-            cout << "String A has a larger value of: " << k;
-        }
-        else {
-            cout << "String B has a larger value of: " << j;
-        }
+        if (l1 >= l2)
+            return l1;
+        else
+            return l2;
     }
-    int compare() {
-        static int k;
+    void compare() {
+        int k = 0;
         for (int i = 0; (a[i] != '/0' && b[i] != '/0'); i++) {
             if (a[i] != b[i]) {
                 k = 1;
@@ -61,104 +67,145 @@ public:
             cout << "The strings are not equal." << endl;
         }
     }
-    string concatenate() {
+    void concatenate() {
         string result;
-        result = a + b;
-        cout << "The concatenated string is: " << result << endl;
+        cout << "The concatenated strng is: " << a + " " << b;
 
     }
-    int searchchar(char ch) {
-        cout << "Enter a character you want to search: ";
-        cin >> ch;
-        for (int i = 0; a[i] != '/0'; i++) {
-            if (a[i] == ch) {
-                cout << "The character '" << ch << "' is present in string 1." << endl;
-            }
-            else {
-                cout << "Character not found in string 1;" << endl;
-            }
+
+   
+
+
+
+    int searchChar(char ch) {
+        int i = 0;
+        while (a[i] != '\0') {
+            if (a[i] == ch)
+                cout << "Character found";
+            else
+                i++;
         }
-        for (int j = 0; a[j] != '/0'; j++) {
-            if (b[j] == ch) {
-                cout << "The character '" << ch << "' is present in string 2." << endl;
-            }
-            else {
-                cout << "Character not found in string 2;" << endl;
-            }
-        }
-    
+        return 0;
+    }
     int searchword(string word) {
-        string word;
-        int c;
-        cout << "Enter the word you want to search: " << endl;
-        getline(cin, word);
-        for (int k = 0; a[k] != '/0'; k++) {
-            if ((a[k] == word[c]) && (word[c] != '/0') && (a[k] != ' ')) {
-                c++;
+        int i = 0, j = 0, k = 0, l = 0;
+        while (a[i] != '\0' && word[j] != '\0')
+        {
+            if (word[j] != a[i])
+            {
+                i++;
+                j = 0;
             }
-            else {
-                c = 0;
-            }
-        }
-        if (c == 0) {
-            cout << "Word not found in string 1." << endl;
-        }
-        else {
-            cout << "Word found in string 1" << endl;
-        }
-
-        string wrd, int d;
-        cout << "Enter the word you want to search: " << endl;
-        getline(cin, wrd);
-        for (int k = 0; b[k] != '/0'; k++) {
-            if ((b[k] == wrd[d]) && (wrd[c] != '/0') && (b[k] != ' ')) {
-                d++;
-            }
-            else {
-                d = 0;
+            else
+            {
+                i++;
+                j++;
             }
         }
-        if (d == 0) {
-            cout << "Word not found in string 2." << endl;
+        while (b[k] != '\0' && word[l] != '\0')
+        {
+            if (word[l] != b[k])
+            {
+                k++;
+                l = 0;
+            }
+            else
+            {
+                k++;
+                l++;
+            }
         }
-        else {
-            cout << "Word found in string 2" << endl;
-        }
+        if (word[j] == '\0' || word[l] == '\0')
+            return 1;
+        else
+            return 0;
     }
-
-};
+    };
 
     int main()
     {
         stringtype t;
         int opt;
-        cout << "What option do you want to perform?(select a number)" << endl;
-        cout << "1.Enter two strings" << endl << "2.Print two strings" << endl << "3.Find string with maximum length" << endl << "4.Compare the two strings." << endl << "5.Concatenate the two strings." << endl << "6.Search a word." << endl << " 7.Search a character." << endl;
-        cin >> opt;
-        if (opt > 0 && opt < 8) {
-            if (opt == 1) {
-                t.setvalues(a, b);
-            }
-            else if (opt == 2) {
-                t.printvalues();
-            }
-            else if (opt == 3) {
-                t.maxlength();
-            }
-            else if (opt == 4) {
-                t.compare();
-            }
-            else if (opt == 5)
-                t.concatenate();
-            }
-            else if (opt == 6) {
 
-            t.searchword("hello");
-             }
-             else {
-              searchchar('f');
-              }
+        string first, second, word, character;
+
+        cout << "\nMENU" << endl
+            << "1-setvalues\n"
+            << "2-print values\n"
+            << "3-Find maximum length\n"
+            << "4-compare two strings\n"
+            << "5-concatenate two strings\n"
+            << "6-Search word\n"
+            << "7-search character\n"
+            << "0-Exit\n";
+        cin >> opt;
+        switch (opt)
+        {
+        case 1:
+        {
+            cout << "Enter the first string: ";
+            cin >> first;
+            cout << endl;
+            cout << "Enter the second string: ";
+            cin >> second;
+            //getline(cin, second);
+            cout << endl;
+            t.setvalues(first, second);
+            break;
+        }
+
+        case 2:
+        {
+            t.printvalues();
+            break;
+        }
+
+    case3: {
+       cout<<"The maximum length out of the two strings is: "<< t.maxlength();
+        break;
+        }
+
+        case 4: {
+            t.compare();
+            break;
+        }
+        case 5: {
+            t.concatenate();
+            break;
+        }
+
+        case 6: {
+
+            string a;
+            cout << "Enter a word to search: ";
+            cin >> a;
+            if (t.searchword(a)==1)
+                cout << "The word does Exist in one of the strings.";
+            else
+                cout << "The word does not exist in either of the strings.";
+            break;
+        }
+
+
+        case 7: {
+            char ch;
+            cout << "Enter the character you want to search for in the string:";
+            cin >> ch;
+            if (t.searchChar(ch) == 1)
+                cout << "The character has been found!" << endl;
+            else
+                cout << "The character is not in the string!" << endl;
+            break;
+        }
+
+
+
+
+
+        case 0: {
+            cout << "Exited";
+            break;
+        }
+        }
     }
 
-
-}
